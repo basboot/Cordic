@@ -1,6 +1,7 @@
 /// Cordic: approximate sin and cos through coordinate rotation digital computer
 /// https://www.allaboutcircuits.com/technical-articles/an-introduction-to-the-cordic-algorithm/
 
+// helper function to calculate 2^-i
 fn power_of_2(n: i32) -> f64 {
     assert!(n <= 0, "No positive powers allowed");
     let mut result = 1_f64;
@@ -15,6 +16,7 @@ fn power_of_2(n: i32) -> f64 {
     }
 }
 
+// approximate sin and cos for theta (radians), using float operations for rotation
 fn cordic_float(theta: f64) {
     // number of iterations
     let n_tan = 10;
@@ -54,6 +56,7 @@ fn cordic_float(theta: f64) {
     println!("cos({}) = {}", desired_angle, cos_theta);
 }
 
+// add two values
 fn add_values(a: u64, delta_a: u64, sign_a: bool, sign_delta_a: bool) -> (u64, bool) {
     // signs not equal, subtract and possible swap values
     if sign_a^sign_delta_a {
@@ -68,6 +71,7 @@ fn add_values(a: u64, delta_a: u64, sign_a: bool, sign_delta_a: bool) -> (u64, b
     }
 }
 
+// approximate sin and cos for theta (radians), using integer operations for rotation
 fn cordic_int(theta: f64) {
     // number of iterations
     let n_tan = 10;
