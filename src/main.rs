@@ -40,11 +40,11 @@ fn main() {
         sigma = if z > 0_f64 { 1_f64 } else { -1_f64 };
 
         // take iteration steps
-        let x_prev = x;
-        let y_prev = y;
-        x = x - sigma * power_of_2(-i) * y_prev;
-        y = y + sigma * power_of_2(-i) * x_prev;
-        z = z - sigma * precomputed_tan[i as usize];
+        let delta_x = power_of_2(-i) * y;
+        let delta_y = power_of_2(-i) * x;
+        x += if z > 0_f64 { -delta_x } else { delta_x };
+        y += if z > 0_f64 { delta_y } else { -delta_y };
+        z += if z > 0_f64 { -precomputed_tan[i as usize] } else { precomputed_tan[i as usize] };
 
         println!("i={} s={} x={} y={} z={}",
             i, sigma, x, y, z);
