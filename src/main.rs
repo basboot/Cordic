@@ -108,6 +108,10 @@ fn cordic_int(theta: f64) {
 
 
 fn main() {
-    cordic_float(1.0);
-    cordic_int(1.0);
+    let angle = 1.0;
+
+    cordic_float(angle);
+    cordic_int(angle);
+
+    println!("sin({}) = {}, cos({}) = {}", angle, angle.sin(), angle, angle.cos());
 }
